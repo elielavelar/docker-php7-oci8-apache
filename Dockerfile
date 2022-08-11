@@ -9,7 +9,7 @@ LABEL MAINTAINER="Eliel Avelar <elielavelar@gmail.com>"
 #    && apt-get clean -y
 RUN apt-get update \
     && apt-get install -y unzip libaio-dev libmcrypt-dev \ 
-        libicu-dev libzip-dev zip \
+        libicu-dev libzip-dev zip libmagickwand-dev --no-install-recommends \
     && apt-get clean -y
 
 # PHP extensions
@@ -19,14 +19,14 @@ RUN \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl  \
-    #&& docker-php-ext-install gd2 \ 
     && docker-php-ext-install sockets \
     && docker-php-ext-install zip
     # && docker-php-ext-install mcrypt
 
 # xdebug, if you want to debug
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+RUN pecl install xdebug imagick \
+    && docker-php-ext-enable xdebug \
+    && docker-php-ext-enable imagick
 
 # PHP composer
 RUN curl -sS https://getcomposer.org/installer | php --  --install-dir=/usr/bin --filename=composer
@@ -63,9 +63,28 @@ RUN docker-php-ext-configure pdo_oci --with-pdo-oci=instantclient,/usr/local/ins
        && docker-php-ext-install pdo_oci \
        && docker-php-ext-enable oci8	
 
-#RUN apt-get -y install unixodbc-dev
-#RUN pecl install sqlsrv pdo_sqlsrv
-#RUN printf "; priority=20\nextension=sqlsrv.so\n" > /etc/php/7.4/mods-available/sqlsrv.ini
-#RUN printf "; priority=30\nextension=pdo_sqlsrv.so\n" > /etc/php/7.4/mods-available/pdo_sqlsrv.ini
-#RUN phpenmod -v 7.4 sqlsrv pdo_sqlsrv
+# Microsoft SQL Server Prerequisites
+RUN apt-get update && apt-get install -y locales unixodbc libgd3 libgd-dev \ 
+    libgss3 odbcinst \
+    devscripts debhelper dh-exec dh-autoreconf libreadline-dev libltdl-dev \
+    tdsodbc unixodbc-dev wget unzip apt-transport-https \
+    libfreetype6-dev libjpeg-dev libpng-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-install pdo \
+    && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+
+RUN apt-get update \
+    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get update \
+    && ACCEPT_EULA=Y apt-get install --yes --no-install-recommends msodbcsql17 mssql-tools \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /tmp/*
+
+RUN pecl install pdo_sqlsrv sqlsrv \
+    && docker-php-ext-enable pdo_sqlsrv sqlsrv \
+    #&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) gd 
+
 RUN service apache2 restart

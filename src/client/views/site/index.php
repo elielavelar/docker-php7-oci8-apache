@@ -1,0 +1,12 @@
+<?php
+
+/* @var $this yii\web\View */
+
+#$this->title = 'Sistema de Registro de Citas';
+$this->title = Yii::$app->name;
+?>
+<div class="site-index">
+    <div class="body-content">
+        
+    </div>
+</div>

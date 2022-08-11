@@ -1,0 +1,226 @@
+<pre>Array
+(
+    [192.168.27.33] => Array
+        (
+            [Centre] => 1
+            [Service] => E1
+            [Task] => Enlace Primario
+            [success] => 
+        )
+
+    [192.168.27.34] => Array
+        (
+            [Centre] => 1
+            [Service] => E2
+            [Task] => Enlace Secundario
+            [success] => 
+        )
+
+    [172.20.111.254] => Array
+        (
+            [Centre] => 2
+            [Service] => E1
+            [Task] => FWAPO1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.133.254] => Array
+        (
+            [Centre] => 4
+            [Service] => E1
+            [Task] => FWSEN1 
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.132.254] => Array
+        (
+            [Centre] => 5
+            [Service] => E1
+            [Task] => FWSVI1 
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.118.254] => Array
+        (
+            [Centre] => 6
+            [Service] => E1
+            [Task] => FWCHA1 
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.131.254] => Array
+        (
+            [Centre] => 7
+            [Service] => E1
+            [Task] => FWCOJ1 
+            [success] => 
+            [succes] => 1
+        )
+
+    [192.168.20.33] => Array
+        (
+            [Centre] => 8
+            [Service] => E1
+            [Task] => Enlace Principal
+            [success] => 
+            [succes] => 1
+        )
+
+    [192.168.20.34] => Array
+        (
+            [Centre] => 8
+            [Service] => E2
+            [Task] => Enlace Secundario
+            [success] => 
+            [succes] => 1
+        )
+
+    [192.168.26.33] => Array
+        (
+            [Centre] => 9
+            [Service] => E1
+            [Task] => E1
+            [success] => 
+            [succes] => 1
+        )
+
+    [192.168.26.34] => Array
+        (
+            [Centre] => 9
+            [Service] => E2
+            [Task] => E2
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.129.254] => Array
+        (
+            [Centre] => 10
+            [Service] => E1
+            [Task] => FWSTE1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.135.254] => Array
+        (
+            [Centre] => 11
+            [Service] => E1
+            [Task] => FWLOU1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.122.254] => Array
+        (
+            [Centre] => 12
+            [Service] => E1
+            [Task] => FWSMI1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.124.254] => Array
+        (
+            [Centre] => 16
+            [Service] => E1
+            [Task] => FWSTG1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.119.254] => Array
+        (
+            [Centre] => 14
+            [Service] => E1
+            [Task] => FWUSU1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.123.254] => Array
+        (
+            [Centre] => 15
+            [Service] => E1
+            [Task] => FWLAU1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.130.254] => Array
+        (
+            [Centre] => 17
+            [Service] => E1
+            [Task] => FWSSG1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.128.254] => Array
+        (
+            [Centre] => 18
+            [Service] => E1
+            [Task] => FWSSA1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.121.254] => Array
+        (
+            [Centre] => 19
+            [Service] => E1
+            [Task] => FWZAC1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.125.254] => Array
+        (
+            [Centre] => 20
+            [Service] => E1
+            [Task] => FWSON1
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.136.254] => Array
+        (
+            [Centre] => 22
+            [Service] => E1
+            [Task] => FWMEJ1
+            [success] => 
+            [succes] => 1
+        )
+
+    [192.168.36.33] => Array
+        (
+            [Centre] => 22
+            [Service] => E1
+            [Task] => FWMEJ1
+            [success] => 
+            [succes] => 1
+        )
+
+    [192.168.36.34] => Array
+        (
+            [Centre] => 22
+            [Service] => E2
+            [Task] => FWMEJ2
+            [success] => 
+            [succes] => 1
+        )
+
+    [172.20.28.254] => Array
+        (
+            [Centre] => 28
+            [Service] => E1
+            [Task] => Enlace Principal
+            [success] => 
+            [succes] => 1
+        )
+
+)
