@@ -1,8 +1,8 @@
 web:
-  container_name: php7_apache_oci8
+  container_name: php74_apache_oci8
   build: .
   ports:
-    - "80:80"
+    - "8089:80"
   volumes:
     - ./src:/var/www/html/
     - ./conf/apache:/etc/apache2/sites-enabled/

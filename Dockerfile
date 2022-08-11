@@ -1,17 +1,27 @@
-FROM php:8-apache
+FROM php:7.4.30-apache
 
-MAINTAINER Amin Mkh <mukh_amin@yahoo.com> 
+LABEL MAINTAINER="Eliel Avelar <elielavelar@gmail.com>"
 
 # installing required stuff
+#RUN add-apt-repository ppa:ondrej/php -y \
+#    && apt-get update \
+#    && apt-get install -y unzip libaio-dev libmcrypt-dev git php7.4-dev --allow-unauthenticated \
+#    && apt-get clean -y
 RUN apt-get update \
-    && apt-get install -y unzip libaio-dev libmcrypt-dev git \
+    && apt-get install -y unzip libaio-dev libmcrypt-dev \ 
+        libicu-dev libzip-dev zip \
     && apt-get clean -y
 
 # PHP extensions
 RUN \
     docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && docker-php-ext-configure mysqli \
-    && docker-php-ext-install pdo_mysql
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl  \
+    #&& docker-php-ext-install gd2 \ 
+    && docker-php-ext-install sockets \
+    && docker-php-ext-install zip
     # && docker-php-ext-install mcrypt
 
 # xdebug, if you want to debug
@@ -47,3 +57,15 @@ RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantcl
     && docker-php-ext-install oci8 \
     && echo /usr/local/instantclient/ > /etc/ld.so.conf.d/oracle-insantclient.conf \
     && ldconfig
+
+# Install Oracle extensions
+RUN docker-php-ext-configure pdo_oci --with-pdo-oci=instantclient,/usr/local/instantclient \
+       && docker-php-ext-install pdo_oci \
+       && docker-php-ext-enable oci8	
+
+#RUN apt-get -y install unixodbc-dev
+#RUN pecl install sqlsrv pdo_sqlsrv
+#RUN printf "; priority=20\nextension=sqlsrv.so\n" > /etc/php/7.4/mods-available/sqlsrv.ini
+#RUN printf "; priority=30\nextension=pdo_sqlsrv.so\n" > /etc/php/7.4/mods-available/pdo_sqlsrv.ini
+#RUN phpenmod -v 7.4 sqlsrv pdo_sqlsrv
+RUN service apache2 restart
