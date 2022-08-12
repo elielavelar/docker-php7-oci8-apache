@@ -22,11 +22,15 @@ RUN \
     # && docker-php-ext-install mcrypt
 
 # xdebug, if you want to debug
-RUN pecl install imagick \
+RUN pecl install xdebug imagick \
+    && docker-php-ext-enable xdebug \
     && docker-php-ext-enable imagick
 
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-RUN sed -E -i -e 's/expose_php = On/expose_php = Off/' "$PHP_INI_DIR/php.ini"  
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+RUN sed -E -i -e 's/expose_php = On/expose_php = Off/' "$PHP_INI_DIR/php.ini" \
+    && sed -E -i -e 's/memory_limit = 128M/memory_limit = 256M/' "$PHP_INI_DIR/php.ini"
+
+RUN echo "date.timezone = America/El_Salvador" >> "$PHP_INI_DIR/conf.d/datetimezone.ini"
 
 # PHP composer
 RUN curl -sS https://getcomposer.org/installer | php --  --install-dir=/usr/bin --filename=composer
